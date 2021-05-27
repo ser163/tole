@@ -1,4 +1,4 @@
-Tole 密码树洞
+ Tole 密码树洞
 ===============
 
 > 运行环境要求PHP7.1+，兼容PHP8.0。 ThinkPHP 6.0
@@ -35,6 +35,10 @@ Tole 密码树洞
 * 需要开启php-openssl依赖
 * 需要开启php-fileinfo依赖
 
+### 安装依赖库
+```shell
+composer install
+```
 ### 配置
 ```shell
 cp .example.env .env
