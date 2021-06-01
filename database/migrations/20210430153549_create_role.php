@@ -34,6 +34,7 @@ class CreateRole extends Migrator
             ->addColumn('desc', 'string', ['null' => true])
             ->addIndex(['name'], ['unique' => true])
             ->addColumn('created', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+            ->addColumn('updated', 'timestamp', ['null' => true])
             ->create();
     }
     public  function down(){
