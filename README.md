@@ -64,6 +64,9 @@ php think migrate:run
 ```shell
 php think seed:run
 ```
+## 未完成
+-[ ] 用户密码交
+-[ ] 管理员迁移用户密码 
 ## 源码托管
 
 GitHub:
