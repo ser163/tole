@@ -64,6 +64,49 @@ php think migrate:run
 ```shell
 php think seed:run
 ```
+
+### 网站默认密码
+选择用户模式登录：默认用户`admin`密码`admin`
+
+### Thinkphp nginx配置
+```
+server {
+	listen			80 default;
+	# serverName 配置域名
+	server_name		pw.com;
+	# root指向开发目录
+	root			/Users/user/code/php/tole/public/;
+	
+	location / {
+	   if (!-e $request_filename) {
+	   		rewrite  ^(.*)$  /index.php?s=/$1  last;
+	     }
+    }
+    # log日志可以有也可以没有
+	access_log		/Applications/MxSrvs/bin/nginx/logs/pw.com.log;
+	
+	index index.php index.html index.htm;
+	
+    # PHP配置部分
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass 127.0.0.1:10080;
+        fastcgi_index index.php;
+    
+        set $fastcgi_script_name2 $fastcgi_script_name;
+        if ($fastcgi_script_name ~ "^(.+\.php)(/.+)$") {
+            set $fastcgi_script_name2 $1;
+            set $path_info $2;
+        }
+        
+        fastcgi_param   PATH_INFO $path_info;
+        fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name2;
+        fastcgi_param   SCRIPT_NAME   $fastcgi_script_name2;
+    }
+}
+```
+
+
 ## 未完成
 -[ ] 用户密码交
 -[ ] 管理员迁移用户密码 
